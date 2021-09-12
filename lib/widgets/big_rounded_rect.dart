@@ -7,15 +7,13 @@ class BigRoundedRect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 5.0),
       child: Container(
         height: 100,
         width: 150,
-        // color: Colors.amber,
         decoration: new BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(40),
-          // border: Border.all(width: 40),
+          color: Colors.cyan,
+          borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -26,22 +24,19 @@ class BigRoundedRect extends StatelessWidget {
                 height: 50,
                 width: 50,
                 decoration: new BoxDecoration(
-                  color: Colors.blue,
+                  color: Theme.of(context).accentColor,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  FontAwesomeIcons.bitcoin,
+                  FontAwesomeIcons.airbnb,
                   size: 30,
                 ),
               ),
             ),
             Text(
               "Module 1",
-              style: TextStyle(color: Colors.white, fontSize: 12),
+              style: TextStyle(color: Colors.white, fontSize: 15),
             ),
-            // SizedBox(
-            //   width: ,
-            // )
           ],
         ),
       ),

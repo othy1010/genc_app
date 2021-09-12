@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gc_app/screens/authentification/auth_wrapper.dart';
 // import 'package:gc_app/config/const.dart';
 // import 'package:gc_app/screens/authentification/auth_wrapper.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return MultiProvider(
         providers: [
           // Provider(
@@ -42,11 +44,15 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
-            primaryColor: Color(0xfffaf7f1),
-            accentColor: Color(0xff00213f),
-            hintColor: Color(0xffffaa9b),
+            primaryColor: Color(0xff00213f),
+            accentColor: Color.fromRGBO(249, 212, 14, 1),
+            hintColor: Color(0xFFE96048),
             textSelectionColor: Color(0xff5ea7af),
             visualDensity: VisualDensity.adaptivePlatformDensity,
+            // appBarTheme: AppBarTheme(
+            //   backwardsCompatibility: false, // 1
+            //   systemOverlayStyle: SystemUiOverlayStyle.light, // 2
+            // ),
           ),
           // home: Center(
           //     child: Container(

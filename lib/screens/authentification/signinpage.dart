@@ -25,202 +25,207 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
       body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              color: Theme.of(context).accentColor,
-              height: SizeConfig.screenHeight,
-              child: Image(
-                image: AssetImage("assets/images/Hinterrhein.png"),
-                fit: BoxFit.cover,
+        child: SizedBox(
+          height: SizeConfig.screenHeight,
+          child: Stack(
+            children: <Widget>[
+              Container(
+                color: Theme.of(context).accentColor,
+                // height: SizeConfig.screenHeight,
+                child: Image(
+                  image: AssetImage("assets/images/building2.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Positioned(
-              top: 50,
-              left: 40,
-              child: InkWell(
-                  child: Container(
-                    child: Icon(
-                      FontAwesomeIcons.solidArrowAltCircleLeft,
-                      color: Colors.white,
-                      size: 40,
+              Positioned(
+                top: 50,
+                left: 40,
+                child: InkWell(
+                    child: Container(
+                      child: Icon(
+                        FontAwesomeIcons.solidArrowAltCircleLeft,
+                        color: Theme.of(context).primaryColor,
+                        size: 40,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    }),
+              ),
+              Positioned(
+                top: SizeConfig.screenHeight / 2,
+                bottom: -5,
+                right: -5,
+                left: -5,
+                child: Container(
+                  height: SizeConfig.screenHeight / 2,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).accentColor,
+                      width: 5,
+                    ),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("Sign In page",
+                            style: TextStyle(
+                                fontSize: 50,
+                                color: Theme.of(context).accentColor)),
+                        Text("Build your own succcess...",
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontFamily: 'UI_display_light',
+                                color: Theme.of(context).hintColor)),
+                        Container(
+                          height: 20,
+                        ),
+                        EmailInputBox(
+                          mycontroller: emailController,
+                          preChild: Icon(
+                            FontAwesomeIcons.solidEnvelope,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintText: "password",
+                          labelText: "enter text",
+                        ),
+                        PasswordInputBox(
+                          mycontroller: passwordController,
+                          preChild: Icon(
+                            FontAwesomeIcons.key,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          suffixChild: Icon(
+                            FontAwesomeIcons.solidEye,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintText: "password",
+                          labelText: "enter text",
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width - 40,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              IconButton(
+                                icon: Icon(
+                                  FontAwesomeIcons.google,
+                                  color: Theme.of(context).accentColor,
+                                  size: 35.0,
+                                ),
+                                onPressed: () async {
+                                  print("google icon");
+                                  await context
+                                      .read<AuthenticationService>()
+                                      .googleSignIn();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            AuthenticationWrapper()),
+                                  );
+                                },
+                              ),
+                              Container(
+                                width: 10,
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  FontAwesomeIcons.facebookF,
+                                  color: Theme.of(context).accentColor,
+                                  size: 35.0,
+                                ),
+                                onPressed: () async {
+                                  print("facebook icon");
+                                  await context
+                                      .read<AuthenticationService>()
+                                      .googleSignIn();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            AuthenticationWrapper()),
+                                  );
+                                },
+                              ),
+                              Container(
+                                width: 10,
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  FontAwesomeIcons.twitter,
+                                  color: Theme.of(context).accentColor,
+                                  size: 38.0,
+                                ),
+                                onPressed: () async {
+                                  print("google icon");
+                                  await context
+                                      .read<AuthenticationService>()
+                                      .googleSignIn();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            AuthenticationWrapper()),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width - 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  Theme.of(context).accentColor, // background
+                              onPrimary: Colors.white,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(15)),
+                            ),
+                            child: Text(
+                              'Sign in',
+                              style: TextStyle(
+                                fontFamily: 'UI_display_light',
+                                fontSize: 20.0,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            ),
+                            onPressed: () async {
+                              await context
+                                  .read<AuthenticationService>()
+                                  .signIn(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text,
+                                  );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AuthenticationWrapper()),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  }),
-            ),
-            Positioned(
-              top: SizeConfig.screenHeight / 2,
-              bottom: -5,
-              right: -5,
-              left: -5,
-              child: Container(
-                height: SizeConfig.screenHeight / 2,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).accentColor,
-                    width: 5,
-                  ),
-                  borderRadius: BorderRadius.circular(30),
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text("Sign In page",
-                          style: TextStyle(
-                              fontSize: 50,
-                              color: Theme.of(context).accentColor)),
-                      Text("Build your own succcess...",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'UI_display_light',
-                              color: Theme.of(context).hintColor)),
-                      Container(
-                        height: 20,
-                      ),
-                      EmailInputBox(
-                        mycontroller: emailController,
-                        preChild: Icon(
-                          FontAwesomeIcons.solidEnvelope,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        hintText: "password",
-                        labelText: "enter text",
-                      ),
-                      PasswordInputBox(
-                        mycontroller: passwordController,
-                        preChild: Icon(
-                          FontAwesomeIcons.keycdn,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        suffixChild: Icon(
-                          FontAwesomeIcons.solidEye,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        hintText: "password",
-                        labelText: "enter text",
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width - 40,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              icon: Icon(
-                                FontAwesomeIcons.google,
-                                color: Theme.of(context).accentColor,
-                                size: 35.0,
-                              ),
-                              onPressed: () async {
-                                print("google icon");
-                                await context
-                                    .read<AuthenticationService>()
-                                    .googleSignIn();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          AuthenticationWrapper()),
-                                );
-                              },
-                            ),
-                            Container(
-                              width: 10,
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                FontAwesomeIcons.facebookF,
-                                color: Theme.of(context).accentColor,
-                                size: 35.0,
-                              ),
-                              onPressed: () async {
-                                print("facebook icon");
-                                await context
-                                    .read<AuthenticationService>()
-                                    .googleSignIn();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          AuthenticationWrapper()),
-                                );
-                              },
-                            ),
-                            Container(
-                              width: 10,
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                FontAwesomeIcons.twitter,
-                                color: Theme.of(context).accentColor,
-                                size: 38.0,
-                              ),
-                              onPressed: () async {
-                                print("google icon");
-                                await context
-                                    .read<AuthenticationService>()
-                                    .googleSignIn();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          AuthenticationWrapper()),
-                                );
-                              },
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width - 40,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                //to set border radius to button
-                                borderRadius: BorderRadius.circular(15)),
-                          ),
-                          child: Text(
-                            'Sign in',
-                            style: TextStyle(
-                              fontFamily: 'UI_display_light',
-                              fontSize: 20.0,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                          onPressed: () async {
-                            await context.read<AuthenticationService>().signIn(
-                                  email: emailController.text.trim(),
-                                  password: passwordController.text,
-                                );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      AuthenticationWrapper()),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -7,27 +7,33 @@ class RoundedRect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 10),
       child: Container(
         height: 50,
         width: 120,
         // color: Colors.amber,
         decoration: new BoxDecoration(
-          color: Colors.black,
+          color: Colors.cyan,
           borderRadius: BorderRadius.circular(30),
           // border: Border.all(width: 40),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              height: 40,
-              width: 40,
+              height: 50,
+              width: 50,
               decoration: new BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 shape: BoxShape.circle,
               ),
-              child: Icon(FontAwesomeIcons.userGraduate),
+              child: Icon(
+                FontAwesomeIcons.userGraduate,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+            SizedBox(
+              width: 10,
             ),
             Text(
               "1000 \npoints",

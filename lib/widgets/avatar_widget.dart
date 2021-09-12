@@ -11,35 +11,38 @@ class AvateIcon extends StatelessWidget {
       onTap: () async {
         await context.read<AuthenticationService>().signOut();
       },
-      child: Container(
-          height: 50,
-          width: 50,
-          decoration: new BoxDecoration(
-            color: Colors.blue,
-            shape: BoxShape.circle,
-          ),
-          child: Stack(
-            children: <Widget>[
-              Center(
-                child: Icon(
-                  Icons.person,
-                  color: Colors.white,
-                ),
-              ),
-              Positioned(
-                top: 3,
-                left: 3,
-                child: Container(
-                  height: 10,
-                  width: 10,
-                  decoration: new BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Container(
+            height: 50,
+            width: 50,
+            decoration: new BoxDecoration(
+              color: Theme.of(context).accentColor,
+              shape: BoxShape.circle,
+            ),
+            child: Stack(
+              children: <Widget>[
+                Center(
+                  child: Icon(
+                    Icons.person,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
-              )
-            ],
-          )),
+                Positioned(
+                  top: 3,
+                  left: 3,
+                  child: Container(
+                    height: 10,
+                    width: 10,
+                    decoration: new BoxDecoration(
+                      color: Theme.of(context).hintColor,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                )
+              ],
+            )),
+      ),
     );
   }
 }

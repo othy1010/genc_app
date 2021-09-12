@@ -46,7 +46,7 @@ class _PasswordInputBoxState extends State<PasswordInputBox> {
             controller: widget.mycontroller,
             keyboardType: TextInputType.visiblePassword,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontFamily: 'Montserrat',
               fontSize: 18,
             ),
@@ -57,14 +57,14 @@ class _PasswordInputBoxState extends State<PasswordInputBox> {
               labelText: widget.labelText,
               hintText: widget.hintText,
               hintStyle: TextStyle(
-                color: Colors.white24,
+                color: Colors.black26,
                 fontFamily: 'Montserrat',
                 fontSize: 18,
               ),
               labelStyle: TextStyle(
                 color: _focusNode.hasFocus
                     ? Theme.of(context).hintColor
-                    : Colors.white38,
+                    : Colors.black38,
                 fontFamily: 'Montserrat',
                 fontSize: 18,
               ),
